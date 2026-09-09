@@ -31,7 +31,9 @@ function buildTrackedHref(href: string | undefined): string | undefined {
 
 /**
  * Reconstrói `href` acrescentando `utm_term=<trckUserId>` (usado pelo webhook
- * da Wiapy pra casar a compra com o visitante certo) e preservando os UTMs
+ * de compra — Lowify nesta LP, ver CLAUDE.md — pra casar a compra com o
+ * visitante certo, mesmo padrão que a Wiapy já usa noutra LP) e preservando
+ * os UTMs
  * originais da própria página. window.trckUserId é setado pelo tracker.js
  * (ver app/layout.tsx) antes da hidratação — useSyncExternalStore garante que
  * o valor "cru" seja usado no snapshot do servidor (evita mismatch de

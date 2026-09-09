@@ -10,7 +10,7 @@ declare global {
 }
 
 /** Painel de tracking server-side (identifica visitante, expõe GA4 config). */
-export const TRACKING_PANEL_ORIGIN = "https://dados.analisesclinicasastras.online";
+export const TRACKING_PANEL_ORIGIN = "https://dados.fitconsciente.online";
 
 /**
  * Dispara os eventos de início de checkout no Meta Pixel e no GA4, se os
