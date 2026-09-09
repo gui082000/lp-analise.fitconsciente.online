@@ -1,6 +1,6 @@
 @AGENTS.md
 
-# lpanalise.fitconsciente.online — Landing Page de Vendas (FitConsciente)
+# lp-analise.fitconsciente.online — Landing Page de Vendas (FitConsciente)
 
 ## O que é este projeto
 
