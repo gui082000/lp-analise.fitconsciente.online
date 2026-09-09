@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/*
+  Sistema de design extraído por engenharia reversa de atlasanalisesclinicas.shop
+  (documentação completa fornecida pelo usuário). Site é intencionalmente light-only
+  (página de conversão de vendas, sem modo escuro na referência).
+*/
+
+:root {
+  --background: oklch(98.1% 0.005 300);
+  --foreground: oklch(19.2% 0.019 300);
+
+  --primary: oklch(48.7% 0.219 297.6);
+  --primary-deep: oklch(36.2% 0.176 296.5);
+  --primary-foreground: oklch(100% 0 0);
+
+  --secondary: oklch(93.6% 0.026 299);
+  --secondary-foreground: oklch(36.2% 0.176 296.5);
+
+  --accent: oklch(93.6% 0.026 299);
+  --accent-foreground: oklch(36.2% 0.176 296.5);
+
+  --muted: oklch(95.8% 0.008 300);
+  --muted-foreground: oklch(47.8% 0.024 302);
+
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(19.2% 0.019 300);
+
+  --border: oklch(91.6% 0.014 300);
+  --input: oklch(91.6% 0.014 300);
+  --ring: oklch(48.7% 0.219 297.6);
+
+  --destructive: oklch(57.7% 0.245 27.325);
+  --destructive-foreground: oklch(100% 0 0);
+
+  /* Acentos "laboratoriais" — ícones, blur decorativos, bullets */
+  --lab-blue: oklch(55.6% 0.163 259);
+  --lab-teal: oklch(66.7% 0.108 187);
+  --lab-green: oklch(64.1% 0.113 160);
+
+  /* Cores hardcoded, fora do sistema de tokens — só a barra de urgência usa */
+  --urgency-bg: #116530;
+  --urgency-border: #ff8a00;
+  --urgency-highlight: #ffe45c;
+
+  /* Gradientes de marca */
+  --gradient-brand: linear-gradient(
+    135deg,
+    oklch(36.2% 0.176 296.5) 0%,
+    oklch(48.7% 0.219 297.6) 55%,
+    oklch(55.6% 0.163 259) 100%
+  );
+  --gradient-cta: linear-gradient(
+    135deg,
+    oklch(48.7% 0.219 297.6) 0%,
+    oklch(55.6% 0.163 259) 100%
+  );
+  --gradient-soft: linear-gradient(
+    180deg,
+    oklch(93.6% 0.026 299) 0%,
+    oklch(100% 0 0) 100%
+  );
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-lab-blue: var(--lab-blue);
+  --color-lab-teal: var(--lab-teal);
+  --color-lab-green: var(--lab-green);
+
+  --font-sans: var(--font-plus-jakarta-sans);
+}
+
+/* Sombras nomeadas (fica disponível como shadow-cta / shadow-card / shadow-lift) */
+@theme {
+  --shadow-card: 0 1px 2px oklch(36.2% 0.176 296.5 / 0.06), 0 12px 28px -12px oklch(36.2% 0.176 296.5 / 0.18);
+  --shadow-cta: 0 12px 28px -10px oklch(48.7% 0.219 297.6 / 0.55);
+  --shadow-lift: 0 20px 45px -18px oklch(36.2% 0.176 296.5 / 0.32);
+}
+
+/* Utilitários de gradiente (fica disponível como bg-gradient-brand / bg-gradient-cta / bg-gradient-soft) */
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+@utility bg-gradient-cta {
+  background-image: var(--gradient-cta);
+}
+@utility bg-gradient-soft {
+  background-image: var(--gradient-soft);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/*
+  Reveal on-scroll: fade-in + slide-up ao entrar na viewport, via CSS puro
+  (animation-timeline: view()). Feature-detected — sem suporte, o elemento
+  simplesmente aparece normalmente (progressive enhancement).
+*/
+@supports (animation-timeline: view()) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: reveal-in 0.6s forwards;
+    animation-timeline: view();
+    animation-range: entry cover 22%;
+  }
+}
+
+@keyframes reveal-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
