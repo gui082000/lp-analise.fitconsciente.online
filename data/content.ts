@@ -21,10 +21,10 @@ export const expertSection = {
     mobile: { src: "/imagens/mobile/especialista.webp", width: 320, height: 427 },
     desktop: { src: "/imagens/desktop/especialista.webp", width: 640, height: 853 },
   },
-  name: "Profª. Andriely Santos",
+  name: "Profª. Jenifer Velasque",
   role: "Professora e especialista em Análises Clínicas",
   bio: [
-    "A Profª. Andriely Santos atua na área de Análises Clínicas e contribuiu para que os conteúdos do Guia Visual fossem apresentados de maneira clara, organizada e didática.",
+    "A Profª. Jenifer Velasque atua na área de Análises Clínicas e contribuiu para que os conteúdos do Guia Visual fossem apresentados de maneira clara, organizada e didática.",
     "Seu acompanhamento editorial auxilia na transformação de conceitos relacionados à hematologia, coleta de amostras, urinálise, microbiologia, bioquímica e demais áreas laboratoriais em mapas visuais mais simples de consultar, revisar e compreender.",
     "O objetivo é oferecer aos estudantes um material complementar que una organização, recursos visuais e uma linguagem educacional acessível, facilitando o estudo dos principais assuntos de Análises Clínicas.",
   ],
@@ -48,7 +48,7 @@ export const expertSection = {
   ],
   quote:
     "Nosso objetivo é transformar assuntos laboratoriais que muitas vezes parecem complexos em conteúdos mais visuais, organizados e fáceis de revisar.",
-  quoteName: "Profª. Andriely Santos",
+  quoteName: "Profª. Jenifer Velasque",
   quoteRole: "Especialista em Análises Clínicas",
   disclaimer:
     "Este material possui finalidade exclusivamente educacional e complementar. Ele não substitui aulas, orientação docente, literatura científica, atividades práticas supervisionadas, avaliação profissional, diagnóstico, interpretação clínica individualizada ou protocolos laboratoriais oficiais.",
@@ -65,13 +65,13 @@ export const hero = {
     mobile: { src: "/imagens/mobile/hero-768.webp", width: 768, height: 960 },
     desktop: { src: "/imagens/desktop/hero.webp", width: 1120, height: 1400 },
   },
-  headlinePrefix: "Revise 10 áreas de Análises Clínicas através de ",
+  headlinePrefix: "Tenha 80 mapas de 10 áreas de Análises Clínicas reunidos em ",
   headlineHighlight:
-    "80 mapas visuais e relembre os pontos mais importantes sem precisar reler suas apostilas antes da prova.",
+    "1 única biblioteca visual para consultar pelo celular sempre que esquecer alguma coisa.",
   subheadlinePrefix:
-    'Se você passa horas estudando e mesmo assim confunde células, exames, microrganismos e alterações na hora da prova, o Guia Visual "Aprenda Sem Estudar" transforma os principais conteúdos de ',
-  subheadlineHighlight: "10 áreas laboratoriais em 80 mapas rápidos de consultar",
-  subheadlineSuffix: ", direto no celular.",
+    'Chega de procurar uma informação em apostilas, prints, PDFs e anotações diferentes. O Guia Visual "Aprenda Sem Estudar" reúne os principais conteúdos de hematologia, microbiologia, parasitologia, bioquímica, imunologia e outras áreas em ',
+  subheadlineHighlight: "80 mapas organizados por tema",
+  subheadlineSuffix: " e disponíveis em 3 tipos de dispositivo: celular, tablet ou computador.",
   ctaText: "QUERO ESTUDAR COM MAPAS VISUAIS",
   trustBullets: ["Pagamento único", "100% digital", "Acesso imediato"],
 };
