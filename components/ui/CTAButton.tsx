@@ -35,7 +35,10 @@ export function CTAButton({
   const resolvedHref = useTrackedCheckoutHref(href);
 
   function handleClick(event: React.MouseEvent) {
-    if (!resolvedHref || !resolvedHref.startsWith("#")) {
+    // Só conta como InitiateCheckout quando o clique de fato leva a uma URL de
+    // checkout — um botão sem href (ex: abrir o popup de downsell) ainda não é
+    // início de checkout, é passo intermediário.
+    if (resolvedHref && !resolvedHref.startsWith("#")) {
       trackCtaClick(trackingLabel, value);
     }
     onClick?.();

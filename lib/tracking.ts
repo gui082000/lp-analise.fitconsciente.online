@@ -12,6 +12,14 @@ declare global {
 /** Painel de tracking server-side (identifica visitante, expõe GA4 config). */
 export const TRACKING_PANEL_ORIGIN = "https://dados.fitconsciente.online";
 
+// Protege contra duplo clique (comum quando a navegação não é instantânea e
+// a pessoa clica de novo) disparando o mesmo evento 2x com event_id
+// diferente — o Meta não deduplica isso. Debounce por label: o mesmo botão
+// não dispara de novo dentro da janela, mas um botão diferente (label
+// diferente) dispara normalmente mesmo que seja quase ao mesmo tempo.
+const recentFires = new Map<string, number>();
+const DEBOUNCE_MS = 1500;
+
 /**
  * Dispara os eventos de início de checkout no Meta Pixel e no GA4, se os
  * scripts estiverem carregados (ambos são condicionais à existência dos IDs
@@ -19,6 +27,11 @@ export const TRACKING_PANEL_ORIGIN = "https://dados.fitconsciente.online";
  */
 export function trackCtaClick(label: string, value: number) {
   if (typeof window === "undefined") return;
+
+  const now = Date.now();
+  const lastFired = recentFires.get(label);
+  if (lastFired && now - lastFired < DEBOUNCE_MS) return;
+  recentFires.set(label, now);
 
   const eventId = crypto.randomUUID();
   const currency = "BRL";
