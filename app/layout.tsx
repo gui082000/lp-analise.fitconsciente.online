@@ -23,6 +23,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" className={`${plusJakartaSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+        {(metaPixelId || tiktokPixelCode) && (
+          <Script id="pageview-dispatch" strategy="afterInteractive">
+            {`window.__pageViewEventId = crypto.randomUUID();
+              fetch('${TRACKING_PANEL_ORIGIN}/api/event', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  trck_user_id: window.trckUserId,
+                  event_name: "PageView",
+                  event_id: window.__pageViewEventId,
+                  event_source_url: window.location.href,
+                  skip_ga4: true,
+                }),
+              }).catch(() => {});`}
+          </Script>
+        )}
+
         {metaPixelId && (
           <>
             <Script id="meta-pixel" strategy="afterInteractive">
@@ -35,20 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '${metaPixelId}');
-              const pageViewEventId = crypto.randomUUID();
-              fbq('track', 'PageView', {}, { eventID: pageViewEventId });
-
-              fetch('${TRACKING_PANEL_ORIGIN}/api/event', {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  trck_user_id: window.trckUserId,
-                  event_name: "PageView",
-                  event_id: pageViewEventId,
-                  event_source_url: window.location.href,
-                  skip_ga4: true,
-                }),
-              }).catch(() => {});`}
+              fbq('track', 'PageView', {}, { eventID: window.__pageViewEventId });`}
             </Script>
             <noscript>
               {/* eslint-disable-next-line @next/next/no-img-element */}
